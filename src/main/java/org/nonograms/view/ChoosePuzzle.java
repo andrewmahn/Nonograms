@@ -7,6 +7,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import org.nonograms.controller.Controller;
 
+// UI Component:
+// Red Banner at the top of the window that contains controls for choosing a puzzle.
 public class ChoosePuzzle implements FXComponent {
 
   private final Controller controller;

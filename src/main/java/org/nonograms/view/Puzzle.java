@@ -11,6 +11,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import org.nonograms.controller.Controller;
 
+// UI Component:
+// Interactable board of clickable buttons with row and column clues.
+// In other words, the puzzle itself.
 public class Puzzle implements FXComponent {
 
   private final Controller controller;
@@ -24,6 +27,7 @@ public class Puzzle implements FXComponent {
 
   @Override
   public Parent render() {
+    // Creates GridPane that hosts the puzzle.
     GridPane grid = new GridPane();
     grid.setAlignment(Pos.CENTER);
     grid.setHgap(2.5);
@@ -31,24 +35,28 @@ public class Puzzle implements FXComponent {
     grid.setPadding(new Insets(20, 20, 20, 20));
     grid.setStyle("-fx-background-color: #D3D3D3;");
 
+    // Generates a board with Row Clues, Col Clues, and clickable cells.
     generateBoard(grid);
 
     return grid;
   }
 
   private void generateBoard(GridPane grid) {
+    // Adds row clues to grid.
     for (int i = 1; i < controller.getClues().getHeight() + 1; i++) {
       HBox rowClue = new HBox();
       rowClue.getChildren().add(new Label(rowClueToString(i - 1)));
       rowClue.setAlignment(Pos.CENTER_RIGHT);
       grid.add(rowClue, 0, i);
     }
+    // Adds col clues to grid.
     for (int j = 1; j < controller.getClues().getWidth() + 1; j++) {
       VBox colClue = new VBox();
       colClue.getChildren().add(new Label(colClueToString(j - 1)));
       colClue.setAlignment(Pos.BOTTOM_CENTER);
       grid.add(colClue, j, 0);
     }
+    // Iterates through game board, adding clickable buttons to each cell.
     for (int i = 1; i < controller.getClues().getHeight() + 1; i++) {
       for (int j = 1; j < controller.getClues().getWidth() + 1; j++) {
         final int row = i - 1;
@@ -80,6 +88,7 @@ public class Puzzle implements FXComponent {
     }
   }
 
+  // Generates Strings containing row clues to populate the board.
   private String rowClueToString(int row) {
     int numCount = 0;
     int zeroCount = 0;
@@ -100,6 +109,7 @@ public class Puzzle implements FXComponent {
     return result.toString();
   }
 
+  // Generates Strings containing col clues to populate the board.
   private String colClueToString(int col) {
     int numCount = 0;
     int zeroCount = 0;

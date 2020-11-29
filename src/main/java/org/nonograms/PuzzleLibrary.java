@@ -7,8 +7,7 @@ import org.nonograms.model.CluesImpl;
 
 
 /**
- * You don't need to make any changes to this file for this assignment, unless you want to add more
- * nonogram puzzles to your library
+ * List of puzzles used in the application. Can be expanded by adding a new CluesImpl object.
  */
 public class PuzzleLibrary {
   private static List<Clues> clues;

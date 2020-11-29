@@ -19,6 +19,8 @@ public class View implements FXComponent {
     }
   }
 
+  // Creates a VBox containing the puzzle selection controls and the puzzle itself.
+  // Displays victory message if the puzzle has been solved.
   @Override
   public Parent render() {
     VBox layout = new VBox();
@@ -29,9 +31,11 @@ public class View implements FXComponent {
     layout.getChildren().add(choosePuzzle.render());
 
     if (!controller.isSolved()) {
+      // If the puzzle isn't solved, refreshes the view.
       Puzzle puzzle = new Puzzle(controller);
       layout.getChildren().add(puzzle.render());
     } else {
+      // If the puzzle is solved, display the victory screen.
       VBox winScreen = new VBox(10);
       winScreen.setAlignment(Pos.CENTER);
       winScreen.setPrefSize(controller.getClues().getColCluesLength() * 10
